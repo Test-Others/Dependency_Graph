@@ -29,7 +29,23 @@ in your IDE’s toolbar or build it directly from the terminal:
 
 To build and run the development version of the iOS app, use the run configuration from the run widget
 in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+### Dependency Analysis
 
+This project includes CycloneDX for generating Software Bill of Materials (SBOM). To analyze project dependencies:
+
+```shell
+# Generate aggregated SBOM (all modules)
+./gradlew cyclonedxBom
+
+# Generate per-module SBOM
+./gradlew :composeApp:cyclonedxDirectBom
+```
+
+Output files:
+- Aggregated: `build/reports/cyclonedx/bom.{json,xml}`
+- Per-module: `composeApp/build/reports/cyclonedx-direct/bom.{json,xml}`
+
+For detailed configuration instructions, see [CYCLONEDX_GUIDE.md](CYCLONEDX_GUIDE.md)
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
